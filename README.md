@@ -1,44 +1,44 @@
-# GCD
-Plateforme de Gestion de l'Inscription et de la Réinscription au Cycle Doctoral
-Description du Projet
-L'inscription et la réinscription des doctorants reposent traditionnellement sur des démarches papier complexes : déplacements fréquents au Centre d'Études Doctorales (CED), signatures successives, risques de perte de dossiers et manque de visibilité sur l'avancement.
+# Analyse du processus GCD (Gestion du Cycle Doctoral)
 
-Cette application web a pour objectif de dématérialiser l'ensemble du processus doctoral afin de le rendre fluide, traçable et rapide, depuis le dépôt de la candidature initiale jusqu'à la délivrance des documents officiels.
+Analyse des étapes d'inscription et de réinscription en doctorat (USMBA, Fès) : besoins, problèmes à discuter et solutions envisagées (organisationnelles et informatiques).
 
-Rôles et Utilisateurs
-Candidat / Doctorant : Soumet son dossier de candidature ou de réinscription et suit l'état d'avancement de sa demande en temps réel.
+Les solutions marquées « proposé » sont des suggestions absentes du guide GCD.
 
-Professeur (Encadrant) : Examine les sujets, évalue les dossiers et les rapports d'activité annuels, puis valide ou rejette les demandes.
+## 1. Cas de l'inscription
 
-Administration (CED) : Effectue la vérification finale des pièces justificatives, gère la validation administrative, enregistre l'inscription et délivre les documents officiels.
+| Étape du processus GCD | Besoins (cas d'utilisation) | Problèmes à discuter | Solutions organisationnelles | Solutions informatiques |
+|---|---|---|---|---|
+| **1. Recherche d'informations avant création du compte (Candidat)** | Consulter les sujets, le calendrier, les conditions et les annonces sans compte | Demandes d'informations répétitives (téléphone, email, déplacement au CED), informations dispersées ou périmées, compte créé sans connaître les sujets | FAQ, référent chargé des réponses, mise à jour du calendrier à chaque campagne, permanence d'accueil | Pages publiques existantes (Calendrier, Organisme, Annonce, Chiffres clés, Contact). Proposé : recherche publique des sujets validés (titre, structure, établissement, année) et FAQ avec assistant |
+| **2. Proposition du sujet (Professeur)** | Proposer un sujet et connaître le nombre de sujets autorisés | Quota non suivi, sujets mal décrits ou en doublon | Règles de quota, modèle de fiche sujet | Bouton « + Ajouter », compteur « Sujets restants à proposer » |
+| **3. Validation du sujet (Administration)** | Valider aux niveaux Structure, Centre, Pôle | Délais longs, blocage à un niveau, manque de visibilité pour le professeur | Un responsable par niveau, délai de traitement | Workflow Structure → Centre → Pôle, statuts colorés (vert, orange, rouge) avec date |
+| **4. Création du compte (modifié) (Candidat)** | Créer un compte ou se connecter de façon sécurisée, sans être bloqué | Emails non académiques, mot de passe oublié, comptes en double, données personnelles stockées | Mode d'emploi, support pour les cas bloquants, politique de protection des données | Connexion Google @usmba.ac.ma, email et mot de passe, « Mot de passe oublié ? », validation du formulaire. Proposé : hash des mots de passe, vérification de l'email |
+| **5. Demande des documents selon la filière (nouveau) (Candidat)** | Dès la connexion, voir la liste exacte des pièces à fournir (adaptée à la filière et au type de demande) avec leur statut | Pièces oubliées ou mal identifiées, listes différentes selon les filières, dossier incomplet découvert tardivement, déplacements pour demander la liste | Liste officielle des pièces par filière, modèles de documents, un référent par filière qui met la liste à jour | Proposé : écran « Documents demandés » avec statuts (À scanner, À vérifier, Vérifié) et barre de progression, liste de pièces configurable par filière sans toucher au reste de l'application |
+| **6. Scan des documents par caméra et extraction par IA (nouveau) (Candidat)** | Photographier chaque pièce avec le téléphone, l'IA lit le document et remplit les informations sans saisie manuelle | Saisie manuelle longue et source d'erreurs, photo floue, mauvais document, pièce manquante, incohérence entre deux pièces, erreurs de lecture de l'IA, caméra refusée ou pas de smartphone, documents écrits à la main ou en arabe | Guide de prise de photo (lumière, cadrage), poste de scan au CED pour ceux sans smartphone, consentement de l'étudiant | Proposé : accès caméra, import image ou PDF en secours, extraction IA (Gemini) en JSON, formulaire pré-rempli, contrôles automatiques (illisible, mauvais type, nom différent du compte) |
+| **7. Vérification par l'étudiant (nouveau) (Candidat)** | Relire les informations extraites, corriger les erreurs et confirmer | Erreurs de l'IA non corrigées, étudiant qui confirme sans lire, responsabilité en cas d'erreur | Déclaration sur l'honneur à la confirmation, contrôle par sondage de l'administration | Champs douteux surlignés « À vérifier », bouton « Confirmer », badge « Documents vérifiés », dépôt bloqué tant que toutes les pièces ne sont pas scannées et confirmées |
+| **8. Dépôt de la candidature (Candidat)** | Choisir un sujet validé et déposer son dossier | Déplacements au CED, pièces perdues, dépôt hors délai | Calendrier des candidatures, rappel des dates limites | Dépôt en ligne, calendrier téléchargeable, notification de dépôt (proposé) |
+| **9. Examen des candidatures (modifié) (Professeur)** | Consulter uniquement les dossiers déjà vérifiés et accepter un candidat, sans contrôler chaque pièce | Temps perdu à trier chaque dossier, dossiers incomplets ou erronés qui arrivent jusqu'à lui, pas de vue d'ensemble | Le professeur ne traite que les dossiers vérifiés, délai de réponse, commission de sélection si besoin | Dossiers non vérifiés grisés (« En cours de vérification »), résumé IA (identité, sujet, pièces conformes), page « Candidatures » groupée par sujet, icône verte (détails), icône violette (export), boutons Accepter / Refuser |
+| **10. Validation de l'inscription (modifié) (Administration)** | Valider le dossier, encaisser les frais | Saisie manuelle, erreurs de recopie, files d'attente, archivage papier | Guichet unique, contrôle par sondage des dossiers vérifiés | Informations déjà extraites donc plus de saisie manuelle, validation finale en ligne, dossiers numérisés, notification au candidat (proposé) |
+| **11. Délivrance des documents (Administration → Candidat)** | Remettre la confirmation d'inscription et la carte d'étudiant | Retard de la carte, déplacement du candidat | Date de retrait ou d'envoi | Statut visible dans le compte, confirmation et carte disponibles en ligne |
 
-Fonctionnalités Principales
-Compte Personnel Sécurisé : Création de compte, connexion via email académique et procédure de récupération de mot de passe.
+## 2. Cas de la réinscription
 
-Inscription & Réinscription en Ligne : Dépôt numérique des pièces justificatives (diplômes, CV, projet de thèse) et des rapports d'activité annuels.
+| Étape du processus GCD | Besoins (cas d'utilisation) | Problèmes à discuter | Solutions organisationnelles | Solutions informatiques |
+|---|---|---|---|---|
+| **1. Recherche d'informations (Doctorant)** | Connaître la période, la procédure, les frais et les délais | Mêmes questions chaque année à l'administration et aux professeurs, délais ratés | Annonce anticipée, note d'information, FAQ mise à jour chaque année | Calendrier et annonces, FAQ. Proposé : rappel automatique des dates limites par email |
+| **2. Connexion et demande des documents (modifié) (Doctorant)** | Se connecter et voir la liste des pièces demandées pour la réinscription (rapport d'activité, CIN, attestation de l'année précédente) | Liste de pièces peu claire, dossier incomplet, rapport non conforme | Modèle de rapport d'activité, liste officielle des pièces par filière | Proposé : écran « Documents demandés » avec statuts et progression, liste configurable par filière |
+| **3. Scan du rapport et des pièces par caméra et extraction par IA (nouveau) (Doctorant)** | Photographier ou importer le rapport et les pièces, l'IA extrait les informations (titre, année, identité) | Rapport papier difficile à numériser, rapport de plusieurs pages, photo illisible, incohérence avec le dossier de l'année précédente, données personnelles | Consentement, guide de numérisation, privilégier l'import d'un PDF pour le rapport | Proposé : caméra ou import PDF/image, extraction IA, formulaire pré-rempli, contrôle de cohérence avec le dossier existant |
+| **4. Vérification par le doctorant (nouveau) (Doctorant)** | Relire et corriger les informations extraites avant l'envoi | Erreurs non corrigées, responsabilité | Déclaration sur l'honneur, contrôle par sondage | Champs « À vérifier », bouton « Confirmer », badge « Documents vérifiés », dépôt bloqué tant que non confirmé |
+| **5. Soumission de la demande (Doctorant)** | Déposer la demande avec le rapport d'activité en pièce jointe | Déplacements, dépôt papier, délais ratés | Imposer le dépôt en ligne pendant la période prévue | Page « Réinscription », pièce jointe, calendrier de la plateforme |
+| **6. Lecture et validation du rapport (modifié) (Professeur)** | Valider ou refuser la réinscription en ne voyant que les dossiers déjà vérifiés | Suivi de plusieurs doctorants, tri de dossiers incomplets, rapports en retard | Date limite de validation, rappel aux doctorants concernés | Dossiers non vérifiés grisés, résumé IA du rapport, colonne « Pièce jointe », bouton « Changer l'état », filtres (encadrant, nom, formation doctorale, réponse du directeur de thèse), tri ascendant/descendant |
+| **7. Validation de la demande (Administration)** | Valider au niveau établissement, centre et pôle | Dossiers en attente à un niveau, pas de vue globale | Répartition par niveau, réunion de suivi en période de pointe | Statuts par étape (Étudiant, Encadrant, Établissement, Centre), « En attente de confirmation » en orange |
+| **8. Encaissement et certificat (Administration)** | Encaisser les frais, délivrer le certificat de réinscription | Files d'attente, erreurs de saisie, paiement sur place | Guichet dédié, horaires étendus en période de pointe | Enregistrement numérique du paiement, certificat généré à partir du dossier validé |
+| **9. Validation de la carte d'étudiant (Administration)** | Valider la carte pour la nouvelle année | Cartes non renouvelées ou en retard | Délai de renouvellement | Mise à jour du statut « carte » dans le compte |
+| **10. Suivi de l'état (Doctorant)** | Savoir où en est la demande sans se déplacer | Aucun suivi, incertitude sur le résultat | Contact désigné en cas de blocage | Consultation en ligne (Validée + carte), notification (proposé) |
 
-Circuit de Validation Multi-niveaux : Workflow séquentiel (Encadrant -> Administration) permettant d'accepter, de refuser ou de demander des pièces complémentaires.
+## 3. Points transversaux
 
-Suivi par Statuts Colorés : Indicateurs visuels (Vert : Validé, Orange : En attente, Rouge : Refusé / À corriger) pour une transparence totale.
-
-Système de Notifications : Alertes automatiques par email à chaque changement d'état du dossier.
-
-Génération de Documents Officiels : Édition automatique des attestations d'inscription/réinscription et des cartes d'étudiant.
-
-Tableaux de Bord (Dashboards) : Vue d'ensemble synthétique des dossiers à traiter pour les professeurs et l'administration du CED.
-
-Parcours Type (Workflow)
-Dépôt du dossier : Le candidat crée son compte et soumet son dossier en ligne.
-
-Évaluation pédagogique : Le professeur examine la demande et donne son accord.
-
-Traitement administratif : L'administration du CED vérifie les pièces, enregistre l'inscription et gère les frais.
-
-Finalisation : Le candidat reçoit ses documents officiels et peut les consulter à tout moment.
-
-Bénéfices Clés
-Zéro Papier & Gain de Temps : Élimination des déplacements inutiles et centralisation des données.
-
-Traçabilité Totale : Suivi rigoureux de l'historique et de chaque étape de validation.
-
-Réduction des Erreurs : Contrôle structuré et vérification claire des pièces avant validation.
+| Étape du processus GCD | Besoins (cas d'utilisation) | Problèmes à discuter | Solutions organisationnelles | Solutions informatiques |
+|---|---|---|---|---|
+| **Test et mise en service (nouveau)** | Tester le scan et tout le parcours sans vrais documents | Risque d'utiliser des CIN réelles pendant les essais, pas de clé API en phase de test | Phase pilote sur une ou deux filières avant généralisation | Mode test (données extraites fictives), compte de démonstration, document exemple fictif, message d'erreur avec bascule en mode test si l'API échoue |
+| **Adaptation à toutes les filières (nouveau)** | Une seule application pour toutes les filières | Pièces et exemples différents selon les filières, maintenance multiple | Un référent par filière pour définir les pièces | Application sans contenu propre à une filière, pièces et sujets dans un seul objet de configuration |
+| **Protection des données personnelles (nouveau)** | Garder les CIN, diplômes et relevés en sécurité | Données sensibles envoyées à une IA, accès non autorisé, conservation trop longue | Consentement explicite, politique de conservation, droits d'accès limités par rôle, conformité à la loi 09-08 | Stockage chiffré, hash des mots de passe, accès par rôle, suppression des images après extraction (proposé) |
